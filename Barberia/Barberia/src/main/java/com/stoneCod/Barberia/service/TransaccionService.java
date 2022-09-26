@@ -13,15 +13,12 @@ public class TransaccionService{
     @Autowired
     TransaccionRepository transaccionRepository;
 
-    public Transaccion crearYActualizarTransaccion(Transaccion transaccion){
-        Transaccion transaccion1 = transaccionRepository.save(transaccion);
-        return transaccion1;
+    public void crearYActualizarTransaccion(Transaccion transaccion){
+        transaccionRepository.save(transaccion);
     }
 
     public List<Transaccion> verTransaccion(){
-        List<Transaccion> transaccions = new ArrayList<Transaccion>();
-        transaccions.addAll(transaccionRepository.findAll());
-        return transaccions;
+        return transaccionRepository.findAll();
     }
 
     public Transaccion verTransaccionId(Long id){

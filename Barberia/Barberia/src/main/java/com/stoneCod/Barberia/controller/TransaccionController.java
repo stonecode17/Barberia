@@ -3,44 +3,52 @@ package com.stoneCod.Barberia.controller;
 import com.stoneCod.Barberia.model.Transaccion;
 import com.stoneCod.Barberia.service.TransaccionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 import java.util.*;
 
-@RestController
+@Controller
 public class TransaccionController {
 
     @Autowired
     TransaccionService transaccionService;
 
-    @GetMapping("/transaccion/get")
-    private List<Transaccion> verTransaccion (){
-        return transaccionService.verTransaccion();
+    @GetMapping("/transaccion")
+    private String verTransaccion(Model model){
+        model.addAttribute("transaccion", transaccionService.verTransaccion());
+        return "transaccion";
     }
 
-    @GetMapping("/transaccion/get/{id}")
-    public Transaccion transaccion(@PathVariable("id") Long id){
-        return this.transaccionService.verTransaccionId(id);
+    @GetMapping("agregar_transaccion")
+    private String verFormTransaccion(Transaccion transaccion){
+        return "agregar_transaccion";
     }
 
-    @PostMapping("/transaccion/post")
-    private void crearTransaccion(@RequestBody Transaccion transaccion){
+    @PostMapping("/transaccion")
+    private String crearTransaccion(Transaccion transaccion){
         transaccionService.crearYActualizarTransaccion(transaccion);
+        return "redirect:/transaccion";
     }
 
-    @DeleteMapping("/transaccion/{id}")
-    private void eliminarTransaccion(@PathVariable("id") Long id){
+    @GetMapping("/transaccion/borrar/{id}")
+    private String eliminarTransaccion(@PathVariable("id") Long id){
         transaccionService.eliminarTransaccion(id);
+        return "redirect:/transaccion";
     }
 
-    @PatchMapping("/transaccion/{id}")
-    public Transaccion actualizarTransaccion(@PathVariable("id") Long id, @RequestBody Transaccion transaccion){
-        Transaccion transaccion1 = transaccionService.verTransaccionId(id);
-        transaccion1.setConcepto (transaccion.getConcepto());
-        transaccion1.setMonto(transaccion.getMonto());
-        //transaccion1.setFechaActualizacion(transaccion.getFechaActualizacion());
-        //transaccion1.setFechaCreate(transaccion.getFechaCreate());
-        return transaccionService.crearYActualizarTransaccion(transaccion1);
+
+    @GetMapping("/transaccion/editar/{id}")
+    private String verTransaccionPorId(@PathVariable("id") Long id, Model model){
+        Transaccion transaccion = transaccionService.verTransaccionId(id);
+        model.addAttribute("transaccion", transaccion);
+        return "actualizar_transaccion";
+    }
+
+    @PostMapping("/transaccion/actualizar/{id}")
+    private String editarPTransaccion(@PathVariable("id") Long id, Transaccion transaccion){
+        transaccionService.crearYActualizarTransaccion(transaccion);
+        return "redirect:/transaccion";
     }
 }

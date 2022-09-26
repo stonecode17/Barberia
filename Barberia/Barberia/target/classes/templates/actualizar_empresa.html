@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-  <form th:action="@{/empresa/actualizar/{id}(id = ${empresa.id})}" method="post">
+<form th:action="@{/empresa/actualizar/{id}(id = ${empresa.id})}" method="post">
     <label for="nombreEmpresa">Nombre</label>
     <input type="text" id="nombreEmpresa" th:field="${empresa.nombreEmpresa}">
 
@@ -24,6 +24,6 @@
 
     <input type="submit" value="Actualizar Empresa">
 
-  </form>
+</form>
 </body>
 </html>

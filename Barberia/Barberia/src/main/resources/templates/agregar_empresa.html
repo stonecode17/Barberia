@@ -9,21 +9,21 @@
     <title>Document</title>
 </head>
 <body>
-  <form th:action="@{/empresa}" method="post">
-      <label for="nombreEmpresa">Nombre</label>
-      <input type="text" id="nombreEmpresa" th:field="${empresa.nombreEmpresa}">
+<form th:action="@{/empresa}" method="post">
+    <label for="nombreEmpresa">Nombre</label>
+    <input type="text" id="nombreEmpresa" th:field="${empresa.nombreEmpresa}">
 
-      <label for="direccionEmpresa">Direccion</label>
-      <input type="text" id="direccionEmpresa" th:field="${empresa.direccionEmpresa}">
+    <label for="direccionEmpresa">Direccion</label>
+    <input type="text" id="direccionEmpresa" th:field="${empresa.direccionEmpresa}">
 
-      <label for="telefonoEmpresa">Telefono</label>
-      <input type="number" id="telefonoEmpresa" th:field="${empresa.telefonoEmpresa}">
+    <label for="telefonoEmpresa">Telefono</label>
+    <input type="number" id="telefonoEmpresa" th:field="${empresa.telefonoEmpresa}">
 
-      <label for="nit">NIT</label>
-      <input type="number" id="nit" th:field="${empresa.nit}">
+    <label for="nit">NIT</label>
+    <input type="number" id="nit" th:field="${empresa.nit}">
 
-      <input type="submit" value="Agregar Empresa">
+    <input type="submit" value="Agregar Empresa">
 
-  </form>
+</form>
 </body>
 </html>
