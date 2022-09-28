@@ -17,7 +17,7 @@ public class TransaccionController {
 
     @GetMapping("/transaccion")
     private String verTransaccion(Model model){
-        model.addAttribute("transaccion", transaccionService.verTransaccion());
+        model.addAttribute("transaccions", transaccionService.verTransaccion());
         return "transaccion";
     }
 

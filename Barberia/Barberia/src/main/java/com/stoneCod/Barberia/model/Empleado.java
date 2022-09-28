@@ -1,7 +1,6 @@
 package com.stoneCod.Barberia.model;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity
